@@ -1,0 +1,11 @@
+.home {
+  min-width: 200px;
+  text-align: center;
+}
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 5px;
+  border: 1px solid gray;
+}
