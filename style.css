@@ -1,11 +1,15 @@
-.home {
-  min-width: 200px;
+body {
+  min-width: 300px;
   text-align: center;
 }
-.login-form {
+.form {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 5px;
   border: 1px solid gray;
+}
+.logged-in-wrapper {
+  text-align: center;
+  display: none;
 }
