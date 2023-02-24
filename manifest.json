@@ -4,7 +4,19 @@
   "version": "1.0",
   "manifest_version": 3,
   "action": {
+    "default_title": "Joy Extension",
     "default_popup": "index.html",
     "default_icon": "assets/favicon.png"
+  },
+  "permissions": ["storage", "activeTab", "scripting", "identity"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["index.js"],
+      "run_at": "document_end"
+    }
+  ],
+  "background": {
+    "service-worker": "firebase.init.config.js"
   }
 }
