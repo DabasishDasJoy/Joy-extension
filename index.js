@@ -1,6 +1,8 @@
 const signUpForm = document.getElementById("signup-form");
 const loginForm = document.getElementById("login-form");
 const btnLogout = document.getElementById("btn-logout");
+const loggedInMessage = document.querySelector(".logged-in-wrapper");
+const home = document.querySelector(".home");
 
 // Add event listener
 signUpForm && signUpForm.addEventListener("submit", handleSignUp);
@@ -42,6 +44,9 @@ function signUp(email, password) {
       var errorMessage = error.message;
       console.error("Sign-up error:", errorCode, errorMessage);
       // TODO: Handle error
+      document.getElementById(
+        "signUp-error-message"
+      ).innerHTML = `<p> ${error}</p>`;
     });
 }
 
@@ -51,16 +56,18 @@ function signIn(email, password) {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(function (userCredential) {
+      // Handle success
       console.log("User signed in:", userCredential.user);
       window.location.href = "index.html";
-
-      // TODO: Handle success
     })
     .catch(function (error) {
       var errorCode = error.code;
       var errorMessage = error.message;
       console.error("Sign-in error:", errorCode, errorMessage);
-      // TODO: Handle error
+      // Handle error
+      document.getElementById(
+        "login-error-message"
+      ).innerHTML = `<p> ${error}</p>`;
     });
 }
 // Signout
@@ -82,12 +89,12 @@ function signOut() {
 firebase.auth().onAuthStateChanged(function (user) {
   if (user) {
     console.log("User is signed in");
-    document.querySelector(".logged-in-wrapper").style.display = "block";
-    document.querySelector(".home").style.display = "none";
+    if (loggedInMessage) loggedInMessage.style.display = "block";
+    if (home) home.style.display = "none";
   } else {
     // User is signed out
     console.log("User is signed out");
-    document.querySelector(".logged-in-wrapper").style.display = "none";
-    document.querySelector(".home").style.display = "block";
+    if (loggedInMessage) loggedInMessage.style.display = "none";
+    if (home) home.style.display = "block";
   }
 });
