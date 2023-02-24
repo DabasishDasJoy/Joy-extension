@@ -17,3 +17,7 @@ body {
 #login-error-message {
   color: red;
 }
+
+#profile > p {
+  font-weight: 500;
+}
